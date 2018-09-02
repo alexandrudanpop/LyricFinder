@@ -26,7 +26,7 @@ class Lyrics extends Component {
   render() {
     return (
       <div>
-        <h1>Lyrics</h1>
+        <h2>Lyrics</h2>
         {this.state.lyrics.lyrics_body ? (
           <React.Fragment>
             <p> {this.state.lyrics.lyrics_body}</p>

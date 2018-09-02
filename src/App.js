@@ -13,7 +13,7 @@ class App extends Component {
         <Router>
           <React.Fragment>
             <Navbar />
-            <div className="container">
+            <div style={{ marginTop: "70px" }} className="container">
               <Switch>
                 <Route exact path="/" component={Index} />
                 <Route exact path="/lyrics/track/:id" component={Lyrics} />
