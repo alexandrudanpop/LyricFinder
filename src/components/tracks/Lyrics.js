@@ -38,7 +38,7 @@ class Lyrics extends Component {
           const selectedTrack =
             track_list.length > 0
               ? track_list.find(t => t.track.track_id.toString() === id).track
-              : "";
+              : {};
 
           return (
             <div>
