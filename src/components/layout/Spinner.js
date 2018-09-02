@@ -11,7 +11,7 @@ export default () => (
       transform: "translate(-50%,-50%)"
     }}
     name="line-scale-pulse-out"
-    color="purple"
+    color="#17a2b8"
     fadeIn={"none"}
   />
 );
