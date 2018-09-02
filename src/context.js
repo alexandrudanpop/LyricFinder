@@ -11,7 +11,7 @@ export class Provider extends Component {
     heading: "Top 10 tracks"
   };
 
-  async componentDidMount() {
+  componentDidMount = async () => {
     const { data } = await axios.get(
       `${cors_bypass}/http://api.musixmatch.com/ws/1.1/chart.tracks.get?page=1&page_size=10&country=us&f_has_lyrics=1&apikey=${api_key}`
     );
@@ -20,7 +20,7 @@ export class Provider extends Component {
       ...this.state,
       track_list: data.message.body.track_list
     });
-  }
+  };
 
   render() {
     return (
