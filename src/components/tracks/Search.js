@@ -16,22 +16,26 @@ class Search extends Component {
       [e.target.name]: e.target.value
     });
 
-  onSubmit = async e => {
+  onSubmit = async (dispatch, e) => {
     e.preventDefault();
 
     const { data } = await axios.get(
       `${cors_bypass}/http://api.musixmatch.com/ws/1.1/track.search?q_track=${
         this.state.trackTitle
-      }$page_size=10&page=1&s_track_rating=desc&apikey=${api_key}`
+      }&page_size=10&page=1&s_track_rating=desc&apikey=${api_key}`
     );
 
-    console.log(data);
+    dispatch({
+      type: "SEARCH_TRACKS",
+      payload: data.message.body.track_list
+    });
   };
 
   render() {
     return (
       <Consumer>
         {value => {
+          const { dispatch } = value;
           return (
             <div className="card card-body mb-4 p-4">
               <h3 className="display-6 text-center">
@@ -39,7 +43,7 @@ class Search extends Component {
               </h3>
               <p className="lead text-center">Get the lyrics for any song</p>
 
-              <form onSubmit={this.onSubmit}>
+              <form onSubmit={this.onSubmit.bind(this, dispatch)}>
                 <div className="form-group">
                   <input
                     type="text"
