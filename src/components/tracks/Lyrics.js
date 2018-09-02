@@ -65,6 +65,10 @@ class Lyrics extends Component {
                       <br />
                       <br />
                       {lyrics.lyrics_body}
+                      {/* todo maybe split by upper case chars - some edge cases can occur */}
+                      {/* {lyrics.lyrics_body.split(/(?=[A-Z])/).map((l, i) => (
+                        <p key={i}>{l}</p>
+                      ))} */}
                     </div>
                     <div
                       className="card-footer"
