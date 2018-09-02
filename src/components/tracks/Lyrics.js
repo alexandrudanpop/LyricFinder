@@ -36,13 +36,14 @@ class Lyrics extends Component {
           const { track_list } = value;
 
           const selectedTrack =
-            track_list.length > 0
+            track_list.length > 0 &&
+            track_list.find(t => t.track.track_id.toString() === id)
               ? track_list.find(t => t.track.track_id.toString() === id).track
               : {};
 
           return (
             <div>
-              {this.state.lyrics.lyrics_body ? (
+              {this.state.lyrics && this.state.lyrics.lyrics_body ? (
                 <React.Fragment>
                   <div className="card">
                     <div
