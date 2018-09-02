@@ -12,6 +12,7 @@ class Lyrics extends Component {
   };
 
   componentDidMount = async () => {
+    window.scrollTo(0, 0);
     const { id } = this.props.match.params;
     const { data } = await axios.get(
       `${cors_bypass}/http://api.musixmatch.com/ws/1.1/track.lyrics.get?track_id=${id}&apikey=${api_key}`
