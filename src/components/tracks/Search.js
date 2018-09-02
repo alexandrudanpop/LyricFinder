@@ -1,9 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { Consumer } from "../../context";
-
-const api_key = "45c7b2fb9f4bdd2b54765bf91dd3e9a2";
-const cors_bypass = "https://cors-anywhere.herokuapp.com";
+import { cors_bypass, api_key, api_url } from "../../constants";
 
 class Search extends Component {
   state = {
@@ -24,7 +22,7 @@ class Search extends Component {
     });
 
     const { data } = await axios.get(
-      `${cors_bypass}/http://api.musixmatch.com/ws/1.1/track.search?q_track=${
+      `${cors_bypass}${api_url}/track.search?q_track=${
         this.state.trackTitle
       }&page_size=10&page=1&s_track_rating=desc&apikey=${api_key}`
     );

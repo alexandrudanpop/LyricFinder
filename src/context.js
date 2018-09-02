@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { cors_bypass, api_key, api_url } from "./constants";
 
-const api_key = "45c7b2fb9f4bdd2b54765bf91dd3e9a2";
-const cors_bypass = "https://cors-anywhere.herokuapp.com";
 const Context = React.createContext();
 
 const reducer = (state, action) => {
@@ -25,7 +24,7 @@ export class Provider extends Component {
 
   componentDidMount = async () => {
     const { data } = await axios.get(
-      `${cors_bypass}/http://api.musixmatch.com/ws/1.1/chart.tracks.get?page=1&page_size=10&country=us&f_has_lyrics=1&apikey=${api_key}`
+      `${cors_bypass}${api_url}/chart.tracks.get?page=1&page_size=10&country=us&f_has_lyrics=1&apikey=${api_key}`
     );
 
     this.setState({
