@@ -1,6 +1,8 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import Spinner from "../layout/Spinner";
+import { Consumer } from "../../context";
 
 const api_key = "45c7b2fb9f4bdd2b54765bf91dd3e9a2";
 const cors_bypass = "https://cors-anywhere.herokuapp.com";
@@ -26,21 +28,37 @@ class Lyrics extends Component {
 
   render() {
     const { lyrics } = this.state;
-    const { history } = this.props;
+    const { id } = this.props.match.params;
+
     return (
-      <div>
-        <h2>Lyrics</h2>
-        {this.state.lyrics.lyrics_body ? (
-          <React.Fragment>
-            <p> {lyrics.lyrics_body}</p>
-            <button className="btn btn-info" onClick={() => history.push("/")}>
-              Back
-            </button>
-          </React.Fragment>
-        ) : (
-          <Spinner />
-        )}
-      </div>
+      <Consumer>
+        {value => {
+          const { track_list } = value;
+
+          const selectedTrack =
+            track_list.length > 0
+              ? track_list.find(t => t.track.track_id.toString() === id).track
+              : "";
+
+          return (
+            <div>
+              <h3>{`${selectedTrack.artist_name} - ${
+                selectedTrack.track_name
+              }`}</h3>
+              {this.state.lyrics.lyrics_body ? (
+                <React.Fragment>
+                  <p> {lyrics.lyrics_body}</p>
+                  <Link className="btn btn-info" to="/">
+                    Back
+                  </Link>
+                </React.Fragment>
+              ) : (
+                <Spinner />
+              )}
+            </div>
+          );
+        }}
+      </Consumer>
     );
   }
 }
