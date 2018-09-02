@@ -16,14 +16,10 @@ export class Provider extends Component {
       `${cors_bypass}/http://api.musixmatch.com/ws/1.1/chart.tracks.get?page=1&page_size=10&country=us&f_has_lyrics=1&apikey=${api_key}`
     );
 
-    setTimeout(
-      () =>
-        this.setState({
-          ...this.state,
-          track_list: data.message.body.track_list
-        }),
-      2000
-    );
+    this.setState({
+      ...this.state,
+      track_list: data.message.body.track_list
+    });
   }
 
   render() {

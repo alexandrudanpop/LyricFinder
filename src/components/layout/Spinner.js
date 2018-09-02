@@ -12,5 +12,6 @@ export default () => (
     }}
     name="line-scale-pulse-out"
     color="purple"
+    fadeIn={"none"}
   />
 );
