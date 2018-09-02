@@ -7,6 +7,8 @@ const Context = React.createContext();
 
 const reducer = (state, action) => {
   switch (action.type) {
+    case "LOAD_TRACKS":
+      return { ...state, track_list: [] };
     case "SEARCH_TRACKS":
       return { ...state, track_list: action.payload };
     default:

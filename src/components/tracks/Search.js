@@ -19,6 +19,10 @@ class Search extends Component {
   onSubmit = async (dispatch, e) => {
     e.preventDefault();
 
+    dispatch({
+      type: "LOAD_TRACKS"
+    });
+
     const { data } = await axios.get(
       `${cors_bypass}/http://api.musixmatch.com/ws/1.1/track.search?q_track=${
         this.state.trackTitle
