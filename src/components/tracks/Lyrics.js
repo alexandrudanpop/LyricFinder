@@ -24,16 +24,15 @@ class Lyrics extends Component {
   };
 
   render() {
+    const { lyrics } = this.state;
+    const { history } = this.props;
     return (
       <div>
         <h2>Lyrics</h2>
         {this.state.lyrics.lyrics_body ? (
           <React.Fragment>
-            <p> {this.state.lyrics.lyrics_body}</p>
-            <button
-              className="btn btn-info"
-              onClick={() => this.props.history.push("/")}
-            >
+            <p> {lyrics.lyrics_body}</p>
+            <button className="btn btn-info" onClick={() => history.push("/")}>
               Back
             </button>
           </React.Fragment>
