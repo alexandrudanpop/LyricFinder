@@ -42,15 +42,34 @@ class Lyrics extends Component {
 
           return (
             <div>
-              <h3>{`${selectedTrack.artist_name} - ${
-                selectedTrack.track_name
-              }`}</h3>
               {this.state.lyrics.lyrics_body ? (
                 <React.Fragment>
-                  <p> {lyrics.lyrics_body}</p>
-                  <Link className="btn btn-info" to="/">
-                    Back
-                  </Link>
+                  <div className="card">
+                    <div className="card-header">
+                      <h3>
+                        {`${selectedTrack.artist_name} - ${
+                          selectedTrack.track_name
+                        }`}
+                      </h3>
+                    </div>
+                    <div className="card-body">
+                      <strong>Genre: </strong>
+                      {selectedTrack &&
+                      selectedTrack.primary_genres &&
+                      selectedTrack.primary_genres.music_genre_list.length > 0
+                        ? selectedTrack.primary_genres.music_genre_list[0]
+                            .music_genre.music_genre_name
+                        : ""}
+                      <br />
+                      <br />
+                      {lyrics.lyrics_body}
+                    </div>
+                    <div className="card-footer">
+                      <Link className="btn btn-info" to="/">
+                        Back
+                      </Link>
+                    </div>
+                  </div>
                 </React.Fragment>
               ) : (
                 <Spinner />
