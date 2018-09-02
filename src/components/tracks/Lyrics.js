@@ -45,7 +45,10 @@ class Lyrics extends Component {
               {this.state.lyrics.lyrics_body ? (
                 <React.Fragment>
                   <div className="card">
-                    <div className="card-header">
+                    <div
+                      className="card-header"
+                      style={{ backgroundColor: "rgb(251, 250, 252)" }}
+                    >
                       <h3>
                         {`${selectedTrack.artist_name} - ${
                           selectedTrack.track_name
@@ -64,7 +67,10 @@ class Lyrics extends Component {
                       <br />
                       {lyrics.lyrics_body}
                     </div>
-                    <div className="card-footer">
+                    <div
+                      className="card-footer"
+                      style={{ backgroundColor: "rgb(251, 250, 252)" }}
+                    >
                       <Link className="btn btn-info" to="/">
                         Back
                       </Link>
