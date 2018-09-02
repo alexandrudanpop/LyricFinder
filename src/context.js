@@ -5,10 +5,20 @@ const api_key = "45c7b2fb9f4bdd2b54765bf91dd3e9a2";
 const cors_bypass = "https://cors-anywhere.herokuapp.com";
 const Context = React.createContext();
 
+const reducer = (state, action) => {
+  switch (action.type) {
+    case "SEARCH_TRACKS":
+      return { ...state, track_list: action.payload };
+    default:
+      return state;
+  }
+};
+
 export class Provider extends Component {
   state = {
     track_list: [],
-    heading: "Top 10 tracks"
+    heading: "Top 10 tracks",
+    dispatch: action => this.setState(state => reducer(state, action))
   };
 
   componentDidMount = async () => {
