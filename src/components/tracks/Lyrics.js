@@ -8,7 +8,8 @@ import { cors_bypass, api_key, api_url } from "../../constants";
 class Lyrics extends Component {
   state = {
     track: {},
-    lyrics: {}
+    lyrics: {},
+    found: null
   };
 
   componentDidMount = async () => {
@@ -18,11 +19,26 @@ class Lyrics extends Component {
       `${cors_bypass}${api_url}/track.lyrics.get?track_id=${id}&apikey=${api_key}`
     );
 
-    this.setState({
-      ...this.state,
-      lyrics: data.message.body.lyrics
-    });
+    if (data.message.header && data.message.header.status_code === 404) {
+      this.setState({
+        ...this.state,
+        lyrics: {},
+        found: false
+      });
+    } else {
+      this.setState({
+        ...this.state,
+        lyrics: data.message.body.lyrics,
+        found: true
+      });
+    }
   };
+
+  formatLyrics = lyricsBody =>
+    lyricsBody
+      .replace("******* This Lyrics is NOT for Commercial use *******", "")
+      .split(/(?=[A-Z])/)
+      .map((l, i) => <p key={i}>{l}</p>);
 
   render() {
     const { lyrics } = this.state;
@@ -38,6 +54,22 @@ class Lyrics extends Component {
             track_list.find(t => t.track.track_id.toString() === id)
               ? track_list.find(t => t.track.track_id.toString() === id).track
               : {};
+
+          if (
+            this.state.found === false ||
+            (this.state.found && !this.state.lyrics.lyrics_body)
+          ) {
+            return (
+              <div className="card">
+                <div className="card-body">
+                  <h4>No Lyrics found</h4>
+                  <Link className="btn btn-info" to="/">
+                    Go Back
+                  </Link>
+                </div>
+              </div>
+            );
+          }
 
           return (
             <div>
@@ -64,11 +96,7 @@ class Lyrics extends Component {
                         : ""}
                       <br />
                       <br />
-                      {lyrics.lyrics_body}
-                      {/* todo maybe split by upper case chars - some edge cases can occur */}
-                      {/* {lyrics.lyrics_body.split(/(?=[A-Z])/).map((l, i) => (
-                        <p key={i}>{l}</p>
-                      ))} */}
+                      {this.formatLyrics(lyrics.lyrics_body)}
                     </div>
                     <div
                       className="card-footer"
