@@ -1,4 +1,4 @@
-##Lyrics Search App using React Context API
+## Lyrics Search App using React Context API
 
 https://alexandrudanpop.github.io/LyricFinder
 
