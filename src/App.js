@@ -3,7 +3,7 @@ import { Provider } from "./context";
 import Navbar from "./components/layout/Navbar";
 import Index from "./components/layout/Index";
 import Lyrics from "./components/tracks/Lyrics";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { HashRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
 import Footer from "./components/layout/Footer";
 
